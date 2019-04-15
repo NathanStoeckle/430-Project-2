@@ -28,23 +28,23 @@ var DomoForm = function DomoForm(props) {
         },
         React.createElement(
             "label",
-            { htmlFor: "name" },
-            "Name: "
+            { htmlFor: "name", id: "title" },
+            "Title: "
         ),
-        React.createElement("input", { id: "domoName", type: "text", name: "name", placeholder: "Domo Name" }),
+        React.createElement("input", { id: "domoName", type: "text", name: "name", placeholder: "Title of your post" }),
         React.createElement(
             "label",
-            { htmlFor: "age" },
-            "Age: "
+            { htmlFor: "age", id: "idea" },
+            "Idea: "
         ),
-        React.createElement("input", { id: "domoAge", type: "number", name: "age", placeholder: "Domo Age" }),
-        React.createElement("input", { className: "makeDomoSubmit", type: "submit", value: "Make Domo" }),
-        React.createElement("input", { id: "domoLevel", type: "number", name: "level", placeholder: "Domo Level" }),
+        React.createElement("input", { id: "domoAge", type: "text", name: "age", placeholder: "Write your thoughts here" }),
         React.createElement(
             "label",
-            { htmlFor: "level", id: "level" },
-            "Level: "
+            { htmlFor: "level", id: "key" },
+            "Key words: "
         ),
+        React.createElement("input", { id: "domoLevel", type: "text", name: "level", placeholder: "What are the Key words here?" }),
+        React.createElement("input", { className: "makeDomoSubmit", type: "submit", value: "Create Note" }),
         React.createElement("input", { name: "_csrf", type: "hidden", value: props.csrf })
     );
 };
@@ -67,27 +67,30 @@ var DomoList = function DomoList(props) {
         return React.createElement(
             "div",
             { key: domo._id, className: "domo" },
-            React.createElement("img", { src: "/assets/img/domoface.jpeg", alt: "domo face", className: "domoFace" }),
             React.createElement(
-                "h3",
+                "h1",
                 { className: "domoName" },
-                "Name: ",
+                "Title: ",
                 domo.name,
                 " "
             ),
             React.createElement(
-                "h3",
+                "h2",
                 { className: "domoAge" },
-                "Age: ",
+                "Idea: ",
                 domo.age,
                 " "
             ),
             React.createElement(
-                "h3",
-                { className: "domoLevel" },
-                "Level: ",
-                domo.level,
-                " "
+                "div",
+                null,
+                React.createElement(
+                    "h3",
+                    { className: "domoLevel" },
+                    "Key Words: ",
+                    domo.level,
+                    " "
+                )
             )
         );
     });

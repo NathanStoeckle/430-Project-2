@@ -4,7 +4,7 @@ const Domo = models.Domo;
 
 const makeDomo = (req, res) => {
   if (!req.body.name || !req.body.age || ! req.body.level) {
-    return res.status(400).json({ error: 'Name, age, and level are all required' });
+    return res.status(400).json({ error: 'Title, text area, and tags are all required' });
   }
 
   const domoData = {
@@ -23,7 +23,7 @@ const makeDomo = (req, res) => {
   domoPromise.catch((err) => {
     console.log(err);
     if (err.code === 11000) {
-      return res.status(400).json({ error: 'Domo already exists' });
+      return res.status(400).json({ error: 'Idea has been written already' });
     }
 
     return res.status(400).json({ error: 'An error occurred' });
@@ -54,14 +54,14 @@ const removerPage = (req, res) => {
   });
 };
 
-const supportPage = (req, res) => {
+const accountPage = (req, res) => {
   Domo.DomoModel.findByOwner(req.session.account._id, (err, docs) => {
     if (err) {
       console.log(err);
       return res.status(400).json({ error: 'An error occurred' });
     }
 
-    return res.render('support', { csrfToken: req.csrfToken(), domos: docs });
+    return res.render('account', { csrfToken: req.csrfToken(), domos: docs });
   });
 };
 
@@ -98,4 +98,4 @@ module.exports.make = makeDomo;
 module.exports.removerPage = removerPage;
 module.exports.remove = removeDomo;
 module.exports.getDomos = getDomos;
-module.exports.supportPage = supportPage;
+module.exports.accountPage = accountPage;

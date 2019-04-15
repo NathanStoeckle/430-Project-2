@@ -23,16 +23,14 @@ const DomoForm = (props) => {
               method="POST"
               className="domoForm"
             >
-            <label htmlFor="name">Name: </label>
-            <input id="domoName" type="text" name="name" placeholder="Domo Name" />
-            <label htmlFor="age">Age: </label>
-            <input id="domoAge" type="number" name="age" placeholder="Domo Age" />
-        <input className="makeDomoSubmit" type="submit" value="Make Domo" />
-            <input id="domoLevel" type="number" name="level" placeholder="Domo Level" />
-        <label htmlFor="level" id="level">Level: </label>
+            <label htmlFor="name" id="title">Title: </label>
+            <input id="domoName" type="text" name="name" placeholder="Title of your post" />
+            <label htmlFor="age" id="idea">Idea: </label>
+            <input id="domoAge" type="text" name="age" placeholder="Write your thoughts here" />
+            <label htmlFor="level" id="key">Key words: </label>
+            <input id="domoLevel" type="text" name="level" placeholder="What are the Key words here?" />
+            <input className="makeDomoSubmit" type="submit" value="Create Note" />
             <input name="_csrf" type="hidden" value={props.csrf} />
-            
-            
         </form>
     );
 };
@@ -50,10 +48,11 @@ const DomoList = function(props) {
         console.dir(domo);
         return (
             <div key={domo._id} className="domo">
-                <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
-                <h3 className="domoName">Name: {domo.name} </h3>
-                <h3 className="domoAge">Age: {domo.age} </h3>
-                <h3 className="domoLevel">Level: {domo.level} </h3>
+                <h1 className="domoName">Title: {domo.name} </h1>
+                <h2 className="domoAge">Idea: {domo.age} </h2>
+                <div>
+                  <h3 className="domoLevel">Key Words: {domo.level} </h3>
+                </div>
             </div>
         );
     });

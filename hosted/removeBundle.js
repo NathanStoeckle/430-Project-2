@@ -39,25 +39,24 @@ var DomoList = function DomoList(props) {
         return React.createElement(
             'div',
             { key: domo._id, className: 'domo' },
-            React.createElement('img', { src: '/assets/img/domoface.jpeg', alt: 'domo face', className: 'domoFace' }),
             React.createElement(
-                'h3',
+                'h1',
                 { className: 'domoName' },
-                'Name: ',
+                'Title: ',
                 domo.name,
                 ' '
             ),
             React.createElement(
-                'h3',
+                'h2',
                 { className: 'domoAge' },
-                'Age: ',
+                'Idea: ',
                 domo.age,
                 ' '
             ),
             React.createElement(
                 'h3',
                 { className: 'domoLevel' },
-                'Level: ',
+                'Key Words: ',
                 domo.level,
                 ' '
             ),

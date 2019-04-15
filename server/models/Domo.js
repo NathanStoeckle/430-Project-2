@@ -16,15 +16,15 @@ const DomoSchema = new mongoose.Schema({
   },
 
   age: {
-    type: Number,
-    min: 0,
+    type: String,
     required: true,
+    trim: true,
   },
-
+    
   level: {
-    type: Number,
-    min: 0,
+    type: String,
     required: true,
+    trim: true,
   },
 
   owner: {
@@ -40,9 +40,9 @@ const DomoSchema = new mongoose.Schema({
 });
 
 DomoSchema.statics.toAPI = (doc) => ({
-  name: doc.name,
-  age: doc.age,
-  level: doc.level,
+  title: doc.title,
+  text: doc.text,
+  tags: doc.tags,
 });
 
 DomoSchema.statics.findByOwner = (ownerId, callback) => {

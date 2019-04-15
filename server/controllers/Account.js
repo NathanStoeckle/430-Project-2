@@ -97,6 +97,28 @@ const signup = (request, response) => {
   });
 };
 
+//Update the password
+const updatepass = (require, response) => {
+  const req = require;
+  const res = response;
+  require.body.username = `${require.body.username}`;
+  require.body.newPass = `${require.body.newPass}`;
+
+  if (!require.body.username || !require.body.newPass) {
+    return response.status(400).json({ error: 'All fields are required' });
+  }
+
+  const name = `${require.body.username}`;
+  const pass = `${require.body.newPass}`;
+
+  return Account.AccountModel.newPass(name, pass, (err, username) => {
+    if (err || !username) {
+      return response.status(401).json({ error: 'Username or invalid password' });
+    }
+    return res.json({ redirect: '/settings' });
+  });
+};
+
 const getToken = (request, response) => {
   const req = request;
   const res = response;
@@ -113,3 +135,4 @@ module.exports.login = login;
 module.exports.logout = logout;
 module.exports.signup = signup;
 module.exports.getToken = getToken;
+module.exports.updatepass = updatepass;

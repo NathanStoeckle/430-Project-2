@@ -63,6 +63,35 @@ AccountSchema.statics.generateHash = (password, callback) => {
   );
 };
 
+// This should update the password
+AccountSchema.statics.newPassword = (username, password, callback) => {
+  AccountModel.findByUsername(username, (err, doc) => {
+    if (err) {
+      return callback(err);
+    }
+
+    if (!doc) {
+      return callback();
+    }
+    
+    //Make sure that the passwords match...
+    return validatePassword(doc, password, (call) => {
+      let hashedPass = '';
+      return crypto.pbkdf2(password, doc.salt, iterations,
+          keyLength, 'RSA-SHA512', (erro, hash) => {
+            hashedPass = hash.toString('hex');
+            doc.set({ password: hashedPass });
+            return doc.save((error, document) => {
+              if (error) {
+                return call(error);
+              }
+              return call(null, document);
+            });
+          });
+    });
+  });
+};
+
 AccountSchema.statics.authenticate = (username, password, callback) =>
   AccountModel.findByUsername(username, (err, doc) => {
     if (err) {
