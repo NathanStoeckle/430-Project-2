@@ -101,15 +101,15 @@ const signup = (request, response) => {
 const updatepass = (require, response) => {
   const req = require;
   const res = response;
-  require.body.username = `${require.body.username}`;
-  require.body.newPass = `${require.body.newPass}`;
+  req.body.username = `${require.body.username}`;
+  req.body.newPass = `${require.body.newPass}`;
 
-  if (!require.body.username || !require.body.newPass) {
+  if (!req.body.username || !req.body.newPass) {
     return response.status(400).json({ error: 'All fields are required' });
   }
 
-  const name = `${require.body.username}`;
-  const pass = `${require.body.newPass}`;
+  const name = `${req.body.username}`;
+  const pass = `${req.body.newPass}`;
 
   return Account.AccountModel.newPass(name, pass, (err, username) => {
     if (err || !username) {
