@@ -1,51 +1,75 @@
-const handleUpdate = (e) => {
-    e.preventDefault();
-    
-    $("#domoMessage").animate({width: 'hide'}, 350);
-    
-    if ($("#username").val() == '' || $("#pass").val() == '') {
-        handleError("All fields are required!");
-        return false;
-    }
+const handlePassChange = (e) => {
+  e.preventDefault();
   
-    sendAjax('POST', $("#updateForm").attr("action"), $("#updateForm").serialize(), redirect);
+  $("#errorContainer").animate({width:'hide'},350);
+  
+  if($("#oldPass").val() == '' || $("#newPass").val() == ''|| $("#newPass2").val() == ''){
+    handleError("All fields are required!!");
     return false;
-};
-const passwordUpdateWindow = (props) => {
-    return (
-        <form id="updateForm"
-          name="updateForm"
-          onSubmit={handleUpdate}
-          action="/setting" 
-          method="POST" 
-          className="updateForm"
-          >
-            <h3>Change Password</h3>
-            <label htmlFor="username">Username: </label>
-            <input id="username" type="text" name="username" placeholder="Username"/><br/>
-            <label htmlFor="pass">New Password: </label>
-            <input id="pass" type="password" name="pass" placeholder="New Password"/><br/>
-            <input type="hidden" name="_csrf" value={props.csrf}/>
-            <br/>
-            <input className="passwordUpdateSubmit" type="submit" value="Update password"/>
-            <hr/>
-        </form>
-    );
+  }
+  
+  sendAjax('POST', $("#passwordForm").attr("action"), $("#passwordForm").serialize(), redirect);
+  
+  return false;
 };
 
-const setup = (csrf) => {    
+const handleAd = (e) =>{
+  e.preventDefault();
+  return false;
+}
+
+const PasswordForm= (props) =>{
+	//renders form
+  return (
+  	<form id="passwordForm" name="passwordForm" onSubmit={handlePassChange} action="/changePassword" method="POST" className="passwordForm">
+        <div id="changeForm">
+        <h3 id="change">Change Password:</h3>
+        <input id="oldPass" type="password" name="oldPass" placeholder="Old Password"/><br/><br/>
+        <input id="newPass" type="password" name="newPass" placeholder="New Password"/><br/><br/>
+        <input id="newPass2" type="password" name="newPass2" placeholder="Re-type Password"/><br/><br/>
+        <input type="hidden" name="_csrf" value={props.csrf}/>
+        <input className="changePassword" type="submit" value="Update" />
+      </div>
+    </form>
+  );
+};
+
+const payForm= (props) =>{
+	//renders form
+  return (
+    <form id="adForm" name="adForm" onSubmit={handleAd} action="/ad" method="POST" className="adForm">
+      <input type="hidden" name="_csrf" value={props.csrf}/>
+      <input className="adSubmit" type="submit" value="$5" />
+    </form>
+  );
+};
+
+const setupAccountPage= function(csrf){
+    
+  const password = document.querySelector("#passwordContainer");
+  const ad = document.querySelector("#adContainer");
+
+  if(password){	
+    //renders form
     ReactDOM.render(
-        <passwordUpdateWindow csrf={csrf} />, 
-        document.querySelector("#updateForm")
+      <PasswordForm csrf={csrf} />,document.querySelector("#updateForm")
     );
+  } 
+  
+  if(ad){	
+    //renders form
+    ReactDOM.render(
+      <DonateForm csrf={csrf} />,document.querySelector("#moneyForm")
+    );
+  } 
 };
 
-const getToken = () => {
-    sendAjax('GET', '/getToken', null, (result) => {
-        setup(result.csrfToken);
-    });
+const getAccountToken = () =>{
+  sendAjax('GET', '/getToken', null, (result)=>{
+    setupAccountPage(result.csrfToken);
+  });
 };
 
-$(document).ready(function() {
-    getToken();
+$(document).ready(function(){
+  getAccountToken();
 });

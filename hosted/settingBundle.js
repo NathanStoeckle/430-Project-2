@@ -1,66 +1,87 @@
 "use strict";
 
-var handleUpdate = function handleUpdate(e) {
-    e.preventDefault();
+var handlePassChange = function handlePassChange(e) {
+  e.preventDefault();
 
-    $("#domoMessage").animate({ width: 'hide' }, 350);
+  $("#errorContainer").animate({ width: 'hide' }, 350);
 
-    if ($("#username").val() == '' || $("#pass").val() == '') {
-        handleError("All fields are required!");
-        return false;
-    }
-
-    sendAjax('POST', $("#updateForm").attr("action"), $("#updateForm").serialize(), redirect);
+  if ($("#oldPass").val() == '' || $("#newPass").val() == '' || $("#newPass2").val() == '') {
+    handleError("All fields are required!!");
     return false;
-};
-var passwordUpdateWindow = function passwordUpdateWindow(props) {
-    return React.createElement(
-        "form",
-        { id: "updateForm",
-            name: "updateForm",
-            onSubmit: handleUpdate,
-            action: "/setting",
-            method: "POST",
-            className: "updateForm"
-        },
-        React.createElement(
-            "h3",
-            null,
-            "Change Password"
-        ),
-        React.createElement(
-            "label",
-            { htmlFor: "username" },
-            "Username: "
-        ),
-        React.createElement("input", { id: "username", type: "text", name: "username", placeholder: "Username" }),
-        React.createElement("br", null),
-        React.createElement(
-            "label",
-            { htmlFor: "pass" },
-            "New Password: "
-        ),
-        React.createElement("input", { id: "pass", type: "password", name: "pass", placeholder: "New Password" }),
-        React.createElement("br", null),
-        React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
-        React.createElement("br", null),
-        React.createElement("input", { className: "passwordUpdateSubmit", type: "submit", value: "Update password" }),
-        React.createElement("hr", null)
-    );
+  }
+
+  sendAjax('POST', $("#passwordForm").attr("action"), $("#passwordForm").serialize(), redirect);
+
+  return false;
 };
 
-var setup = function setup(csrf) {
-    ReactDOM.render(React.createElement("passwordUpdateWindow", { csrf: csrf }), document.querySelector("#updateForm"));
+var handleAd = function handleAd(e) {
+  e.preventDefault();
+  return false;
 };
 
-var getToken = function getToken() {
-    sendAjax('GET', '/getToken', null, function (result) {
-        setup(result.csrfToken);
-    });
+var PasswordForm = function PasswordForm(props) {
+  //renders form
+  return React.createElement(
+    "form",
+    { id: "passwordForm", name: "passwordForm", onSubmit: handlePassChange, action: "/changePassword", method: "POST", className: "passwordForm" },
+    React.createElement(
+      "div",
+      { id: "changeForm" },
+      React.createElement(
+        "h3",
+        { id: "change" },
+        "Change Password:"
+      ),
+      React.createElement("input", { id: "oldPass", type: "password", name: "oldPass", placeholder: "Old Password" }),
+      React.createElement("br", null),
+      React.createElement("br", null),
+      React.createElement("input", { id: "newPass", type: "password", name: "newPass", placeholder: "New Password" }),
+      React.createElement("br", null),
+      React.createElement("br", null),
+      React.createElement("input", { id: "newPass2", type: "password", name: "newPass2", placeholder: "Re-type Password" }),
+      React.createElement("br", null),
+      React.createElement("br", null),
+      React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
+      React.createElement("input", { className: "changePassword", type: "submit", value: "Update" })
+    )
+  );
+};
+
+var payForm = function payForm(props) {
+  //renders form
+  return React.createElement(
+    "form",
+    { id: "adForm", name: "adForm", onSubmit: handleAd, action: "/ad", method: "POST", className: "adForm" },
+    React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
+    React.createElement("input", { className: "adSubmit", type: "submit", value: "$5" })
+  );
+};
+
+var setupAccountPage = function setupAccountPage(csrf) {
+
+  var password = document.querySelector("#passwordContainer");
+  var ad = document.querySelector("#adContainer");
+
+  if (password) {
+    //renders form
+    ReactDOM.render(React.createElement(PasswordForm, { csrf: csrf }), document.querySelector("#updateForm"));
+  }
+
+  if (ad) {
+    //renders form
+    ReactDOM.render(React.createElement(DonateForm, { csrf: csrf }), document.querySelector("#moneyForm"));
+  }
+};
+
+var getAccountToken = function getAccountToken() {
+  sendAjax('GET', '/getToken', null, function (result) {
+    setupAccountPage(result.csrfToken);
+  });
 };
 
 $(document).ready(function () {
-    getToken();
+  getAccountToken();
 });
 "use strict";
 

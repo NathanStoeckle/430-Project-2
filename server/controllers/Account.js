@@ -115,7 +115,7 @@ const updatepass = (require, response) => {
     if (err || !username) {
       return response.status(401).json({ error: 'Username or invalid password' });
     }
-    return res.json({ redirect: '/settings' });
+    return res.json({ redirect: '/account' });
   });
 };
 

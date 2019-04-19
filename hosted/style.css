@@ -76,7 +76,9 @@ nav:nth-child(1) {
 
 #title,
 #idea,
-#key {
+#key,
+#currentName,
+#newPass {
   display: inline-block;
   width: 75px;
   margin-left: 10px;
@@ -313,7 +315,7 @@ h3.domoLevel {
 }
 
 /* Support Page */
-.support {
+#passwordInfo {
   font-family: Montserrat, sans-serif;
   font-size: 20px;
   color: white;
@@ -322,7 +324,7 @@ h3.domoLevel {
   padding: 20px;
 }
 
-.getRid {
+#getRid {
   font-family: 'Dancing Script', cursive;
   font-size: 75;
   color: white;
@@ -331,13 +333,64 @@ h3.domoLevel {
   padding: 20px;
 }
 
-.change {
+#change,
+#adFront {
   font-family: 'Dancing Script', cursive;
   font-size: 50px;
   color: white;
   text-align: center;
   margin: 10px;
   padding: 20px;
+  float: left;
+}
+
+#oldPass,
+#newPass,
+#newPass2 {
+  text-align: center;
+  width: 180px;
+  border-radius: 6px;
+  font-family: Montserrat, sans-serif;
+  float: right;
+  margin: auto;
+  color: black;
+  font-size:  16px;
+}
+
+.changePassword,
+.adSubmit {
+  transition: background-color 0.4s ease;
+  color: black;
+  border: 2px solid black;
+  border-radius: 20px;
+  font-size: 20px;
+  padding: 10px;
+  margin-left: 20px;
+  float: right;
+}
+
+.changePassword:link,
+.changePassword:visited,
+.changePassword:hover,
+.changePassword:active {
+  color: white;
+}
+
+.changePassword:hover {
+  transition: background-color 0.4s ease;
+  background-color: dimgrey;
+}
+
+#changeForm {
+  padding: 20px;
+  margin: 20px;
+  display: block;
+}
+
+#passwordContainer,
+#adContainer {
+  padding: 20px;
+  margin: 20px;
 }
 
 .fakeButton {

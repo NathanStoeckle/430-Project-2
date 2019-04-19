@@ -1,37 +1,48 @@
 <html lang="en">
-
 <head>
-  <meta charset="utf-8" />
-  <title>Notepad</title>
+  <meta charset="utf-8"/>
+  <title>Peacock</title>
   <script crossorigin src="https://unpkg.com/react@15/dist/react.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
   <script crossorigin src="https://unpkg.com/prop-types/prop-types.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.6.2/remarkable.min.js"></script>
-  <link rel="shortcut icon" href="/assets/img/favicon.png" />
-  <link rel="stylesheet" type="text/css" href="/assets/style.css" />
+  <script src="/assets/bundle.js"></script>
+  <link rel="shortcut icon" href="/assets/img/favicon.png"/>
+  <link rel="stylesheet" type="text/css" href="/assets/style.css"/>
 </head>
-
 <body>
-  <nav><a href="/login"><img id="logo" src="/assets/img/noteLogo.png" alt="face logo" /></a>
+  <nav>
+	<nav><a href="/login"><img id="logo" src="/assets/img/noteLogo.png" alt="face logo" /></a>
     <div class="navlink"><a href="/logout">Log out</a></div>
     <div class="navlink"><a href="/maker">Create Notes</a></div>
     <div class="navlink"><a href="/remove">Delete Notes</a></div>
+    <div class="navlink"><a href="/update">Update a Note</a></div>
   </nav>
-  <div class="getRid">Hate Ads?</div>
-  <div class="support">If you would like to become ad free, please considering purchasing a subscription, only $4.99 a year!</div>
-  <button type="button" class="fakeButton">Click to Buy!</button>
-  <br>
-  <br>
-  <br>
-  <div class="change">Want to change your password? Fill out this fields below</div>
-  <section id="updateForm">Settings
+  </nav>
+
+  <section id ="accountPage">
+    <section id="passwordContainer">
+      <section id= "updateForm">
+      </section>
+      
+      <div id="passwordInfo">
+        <p>In order to change your password, enter in your old one, then enter in your new password, and click the update button.</p>
+        <p><strong>Important:</strong> Signout will occur when the password is updated!</p>
+      </div>
+      
+    </section>
+    
+    <section id="adContainer">
+      <section id="getRid"><h3 id="adFront">Hate Ads?</h3><p id="passwordInfo">Please consider subscribing for $4.99 a year!</p></section>
+      <section id="moneyform"></section>
+    </section>
   </section>
+  
   <div id="domoMessage"><img id="speech" src="/assets/img/speech.png" alt="speech box" />
     <h3><span id="errorMessage"></span></h3><img id="domo" src="assets/img/domo.png" alt="domo" />
   </div>
   <script src="/assets/settingBundle.js"></script>
 </body>
-
 </html>
