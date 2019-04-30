@@ -106,9 +106,9 @@ const removeDomo = (request, response) => {
   });
 };
 
-const searchKeyword = (request, response) => {
+const searchKeyword = (request/*, response*/) => {
   const req = request;
-  //const res = response;
+  const res = response;
   
   const query = {};
   
