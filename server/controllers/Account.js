@@ -112,7 +112,7 @@ const changePassword = (require, response) => {
   }
   
   if (req.body.oldPass === req.body.newPass) {
-    return response.status(400).json({ error: 'Your current password cannot be your current one!' });
+    return response.status(400).json({ error: 'Current password cannot be your current one!' });
   }
 
   const username = req.session.account.username;
