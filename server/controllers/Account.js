@@ -53,13 +53,13 @@ const signup = (request, response) => {
 
   if (!req.body.username || !req.body.pass || !req.body.pass2) {
     return res.status(400).json({
-      error: 'RAWR! All fields are required!',
+      error: 'Warning! All fields are required!',
     });
   }
 
   if (req.body.pass !== req.body.pass2) {
     return res.status(400).json({
-      error: 'RAWR! Passwords do not match',
+      error: 'Warning! Passwords do not match',
     });
   }
 
@@ -117,13 +117,13 @@ const changePassword = (require, response) => {
 
   const username = req.session.account.username;
   
-  return Account.AccountModel.authenticate(username, req.body.oldPass, (err, username) => {
-    if (err || !username) {
+  return Account.AccountModel.authenticate(username, req.body.oldPass, (error, account) => {
+    if (error || !username) {
       return response.status(401).json({ error: 'Current Password is incorrect' });
     }
     
     // Create a new account that is set to the old account
-    const newAccount = username;
+    const newAccount = account;
     
     return Account.AccountModel.generateHash(req.body.newPass, (salt, hash) => {
       newAccount.password = hash;

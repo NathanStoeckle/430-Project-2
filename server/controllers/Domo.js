@@ -116,17 +116,17 @@ const searchKeyword = (request, response) => {
     query.name = req.body.name;
   }
   
-  db.users.find(query, function (err, docs) {
+  /* db.users.find(query, function (err, docs) {
     if (err) {
       console.log(err);
       return res.status(400).json({ error: 'An error occurred' });
     }
     
     return res.json({ domos: docs });
-  });
+  }); */
 };
 
-const ad = (req, res) => {
+const ad = () => {
   console.log('Congrats! Pretend that you have no ads! :D');
 };
 
