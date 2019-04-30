@@ -26,7 +26,7 @@ nav {
 }
 
 nav:nth-child(1) {
-  padding-left: 25px;
+  padding-left: 5px;
 }
 
 .navlink {
@@ -56,35 +56,70 @@ nav:nth-child(1) {
   color: coral;
 }
 
+/* New stuff for Signin page */
+#welcome {
+  text-align: center;
+  margin: 0 auto;
+  width 450px;
+  padding-top: 250px;
+  padding-bottom: 10px;
+  font-size: 12px;
+  color: white;
+  font-family: Montserrat, sans-serif;
+}
+
+#signupButtons {
+	text-align: center;
+	width: 400px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+#signupButtons a {
+	text-decoration: none;
+	font-size: 18pt;
+	color: white;
+	font-family: 'Arial', sans-serif;
+	padding: 5px 0px;
+}
+
+#loginButton,
+#signupButton {
+	width: 50%;
+}
+
+.selected {
+	background-color: coral;
+	cursor: default;
+}
+
+.unselected {
+	background-color: grey;
+	cursor: pointer;
+}
+
+#intro {
+  color: white;
+  font-family: Montserrat, sans-serif;
+}
+
 .domoForm {
   height: 35px;
   margin: autos;
   padding-top: 10px;
   border-bottom-right-radius: 4px;
   border-top-right-radius: 4px;
+  margin: 20px;
 }
 
 .domoForm label {
   display: inline-block;
-  width: 75px;
   margin-left: 10px;
   margin-right: 10px;
   font-size: 1.2em;
   float: left;
   color: white;
-}
-
-#title,
-#idea,
-#key,
-#currentName,
-#newPass {
-  display: inline-block;
-  width: 75px;
-  margin-left: 10px;
-  font-size: 1.2em;
-  color: white;
-  font-family: Montserrat, sans-serif;
 }
 
 .domoForm input[type=text] {
@@ -115,13 +150,14 @@ nav:nth-child(1) {
 .makeDomoSubmit:hover {
   transition: background-color 0.4s ease;
   background-color: dimgrey;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .mainForm {
   height: 300px;
-  width: 350px;
+  width: 400px;
   margin: 0 auto;
-  padding-top: 350px;
+  padding-top: 50px;
   font-size: 1.2em;
 }
 
@@ -163,6 +199,7 @@ nav:nth-child(1) {
 .formSubmit:hover {
   transition: background-color 0.4s ease;
   background-color: dimgrey;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 #user,
@@ -170,9 +207,10 @@ nav:nth-child(1) {
 #pass2 {
   text-align: center;
   font-size: 1.1em;
-  width: 180px;
   border-radius: 6px;
   font-family: Montserrat, sans-serif;
+  padding-left: 10px;
+  width: 100%;
 }
 
 #user:focus,
@@ -215,7 +253,6 @@ nav:nth-child(1) {
 
 #domo {
   z-index: 225;
-  margin-top: -20px;
   margin-left: 135px;
   height: 450px;
   width: 300px;
@@ -225,7 +262,7 @@ nav:nth-child(1) {
 }
 
 #domos {
-  width: 40%;
+  width: 100%;
   min-width: 400px;
   margin: 0 auto;
   margin-top: 100px;
@@ -233,16 +270,20 @@ nav:nth-child(1) {
 }
 
 .domo {
-  width: 95%;
-  margin: 0 auto;
-  margin-top: 2px;
-  margin-bottom: 20px;
+  width: 100%;
+  max-width: 450px;
+  margin: 1%;
   border: 2px solid white;
   border-radius: 4px;
+  border-top-left-radius: 75px;
+  border-bottom-right-radius: 75px;
   background-color: grey;
   padding: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
   min-height: 60px;
   overflow: hidden;
+  display: inline-block;
   color: white;
   transition: background-color 2.6s ease-out;
   font-family: Montserrat, sans-serif;
@@ -297,6 +338,8 @@ h3.domoLevel {
   text-align: left;
   font-size: 1em;
   padding: 40px;
+  padding-top: 0;
+  float: left;
 }
 
 .domo:first-child {
@@ -334,39 +377,46 @@ h3.domoLevel {
 }
 
 #change,
-#adFront {
+#adFront,
+#removeMessage {
   font-family: 'Dancing Script', cursive;
   font-size: 50px;
   color: white;
   text-align: center;
   margin: 10px;
   padding: 20px;
-  float: left;
 }
 
 #oldPass,
 #newPass,
-#newPass2 {
+#newPass2,
+#domoName,
+#domoAge,
+#domoLevel,
+#keyTerm {
   text-align: center;
-  width: 180px;
+  width: 50%;
   border-radius: 6px;
   font-family: Montserrat, sans-serif;
-  float: right;
-  margin: auto;
+  margin: 25px;
+  margin-left: 25%;
   color: black;
-  font-size:  16px;
+  font-size: 16px;
+  display: flex;
 }
 
 .changePassword,
-.adSubmit {
+.adSubmit,
+.noteSubmit,
+.searchKeyword {
   transition: background-color 0.4s ease;
   color: black;
   border: 2px solid black;
   border-radius: 20px;
   font-size: 20px;
   padding: 10px;
-  margin-left: 20px;
-  float: right;
+  margin-left: 25%;
+  width: 50%;
 }
 
 .changePassword:link,
@@ -379,6 +429,7 @@ h3.domoLevel {
 .changePassword:hover {
   transition: background-color 0.4s ease;
   background-color: dimgrey;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 #changeForm {

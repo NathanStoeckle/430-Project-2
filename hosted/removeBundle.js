@@ -29,7 +29,7 @@ var DomoList = function DomoList(props) {
             React.createElement(
                 'h3',
                 { className: 'emptyDomo' },
-                'No Notes present'
+                'No Notes are found!'
             )
         );
     }
@@ -53,6 +53,14 @@ var DomoList = function DomoList(props) {
                 domo.age,
                 ' '
             ),
+            React.createElement('br', null),
+            React.createElement('br', null),
+            React.createElement('br', null),
+            React.createElement('br', null),
+            React.createElement('br', null),
+            React.createElement('br', null),
+            React.createElement('br', null),
+            React.createElement('br', null),
             React.createElement(
                 'h3',
                 { className: 'domoLevel' },
@@ -68,6 +76,11 @@ var DomoList = function DomoList(props) {
                     method: 'POST',
                     className: 'removeDomoForm'
                 },
+                React.createElement('br', null),
+                React.createElement('br', null),
+                React.createElement('br', null),
+                React.createElement('br', null),
+                React.createElement('br', null),
                 React.createElement('input', { name: '_id', type: 'hidden', value: domo._id, className: 'idField' }),
                 React.createElement('input', { name: '_csrf', type: 'hidden', value: csrf, className: 'csrfField' }),
                 React.createElement('input', { className: 'makeDomoSubmit', type: 'submit', value: 'Remove' })

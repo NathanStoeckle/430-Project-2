@@ -15,9 +15,14 @@
 
 <body>
   <nav><a href="/login"><img id="logo" src="/assets/img/noteLogo.png" alt="face logo" /></a>
-    <div class="navlink"><a id="signupButton" href="/signup">Sign up</a></div>
-    <div class="navlink"><a id="loginButton" href="/login">Login</a></div>
   </nav>
+  
+  <div id="welcome"><h1>Hello! Welcome to Notepad!</h1></div>
+  <div id="signupButtons">
+    <a id="loginButton" class="selected" href="/login">Login</a>
+    <a id="signupButton" class="unselected" href="/signup">Sign up</a>
+  </div>
+  
   <section id="content"></section>
   <div id="domoMessage"><img id="speech" src="/assets/img/speech.png" alt="speech box" />
     <h3><span id="errorMessage">Wrong username or password</span></h3><img id="domo" src="assets/img/domo.png" alt="domo" />

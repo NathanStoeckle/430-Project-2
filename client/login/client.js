@@ -40,82 +40,37 @@ const handleSignup = (e) => {
 };
 
 const LoginWindow = (props) => {
-  return ( <
-    form id = "loginForm"
-    name = "loginForm"
-    onSubmit = {
-      handleLogin
-    }
-    action = "/login"
-    method = 'POST'
-    className = "mainForm" >
-    <
-    label htmlFor = "username" > Username: < /label> <
-    input id = "user"
-    type = "text"
-    name = "username"
-    placeholder = "username" / >
-    <
-    label htmlFor = "pass" > Password: < /label> <
-    input id = "pass"
-    type = "password"
-    name = "pass"
-    placeholder = "password" / >
-    <
-    input type = "hidden"
-    name = "_csrf"
-    value = {
-      props.csrf
-    }
-    /> <
-    input className = "formSubmit"
-    type = "submit"
-    value = "Sign in" / >
-    <
-    /form>
+  return ( 
+    <form id = "loginForm"
+      name = "loginForm"
+      onSubmit = { handleLogin }
+      action = "/login"
+      method = 'POST'
+      className = "mainForm">
+      <h3 id="intro">Login to your account: </h3>
+    <input id = "user" style={{fontSize: 14 + "pt"}} type = "text" name = "username" placeholder = "username" />
+    <input id = "pass" style={{fontSize: 14 + "pt"}} type = "password" name = "pass" placeholder = "Password" />
+    <input type = "hidden" name = "_csrf" value = { props.csrf }/>
+    <input className = "formSubmit" type = "submit" value = "Sign in" />
+    </form>
   );
 };
 
 const SignupWindow = (props) => {
-  return ( <
-    form id = "signupForm"
-    name = "signupForm"
-    onSubmit = {
-      handleSignup
-    }
-    action = "/signup"
-    method = 'POST'
-    className = "mainForm" >
-    <
-    label htmlFor = "username" > Username: < /label> <
-    input id = "user"
-    type = "text"
-    name = "username"
-    placeholder = "username" / >
-    <
-    label htmlFor = "pass" > Password: < /label> <
-    input id = "pass"
-    type = "password"
-    name = "pass"
-    placeholder = "password" / >
-    <
-    label htmlFor = "pass2" > Password: < /label> <
-    input id = "pass2"
-    type = "password"
-    name = "pass2"
-    placeholder = "retype password" / >
-    <
-    input type = "hidden"
-    name = "_csrf"
-    value = {
-      props.csrf
-    }
-    /> <
-    input className = "formSubmit"
-    type = "submit"
-    value = "Sign Up" / >
-    <
-    /form>
+  return ( 
+    <form id = "signupForm"
+      name = "signupForm"
+      onSubmit = {handleSignup}
+      action = "/signup"
+      method = 'POST'
+      className = "mainForm">
+      <h3 id="intro">Create a new account: </h3>
+      <input id = "user" style={{fontSize: 14 + "pt"}} type = "text" name = "username" placeholder = "Username" />
+      <input id = "pass" style={{fontSize: 14 + "pt"}} type = "password" name = "pass" placeholder = "Password" />
+      <input id = "pass2" style={{fontSize: 14 + "pt"}} type = "password" name = "pass2" placeholder = "Retype Password" />
+      <input type = "hidden" name = "_csrf" value = { props.csrf }/> 
+      <input className = "formSubmit" type = "submit" value = "Sign Up" />
+    </form>
   );
 };
 
@@ -146,6 +101,13 @@ const setup = (csrf) => {
   signupButton.addEventListener("click", (e) => {
     e.preventDefault();
     createSignupWindow(csrf);
+    
+    //Switch between what is being show to the user
+    loginButton.classList.remove("selected");
+    loginButton.classList.add("unselected");
+    signupButton.classList.remove("unselected");
+    signupButton.classList.add("selected");
+    
     return false;
   });
 

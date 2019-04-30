@@ -40,9 +40,9 @@ const DomoSchema = new mongoose.Schema({
 });
 
 DomoSchema.statics.toAPI = (doc) => ({
-  title: doc.title,
-  text: doc.text,
-  tags: doc.tags,
+  name: doc.name,
+  age: doc.age,
+  level: doc.level,
 });
 
 DomoSchema.statics.findByOwner = (ownerId, callback) => {

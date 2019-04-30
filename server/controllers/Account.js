@@ -98,24 +98,45 @@ const signup = (request, response) => {
 };
 
 //Update the password
-const updatepass = (require, response) => {
+const changePassword = (require, response) => {
   const req = require;
   const res = response;
-  req.body.username = `${require.body.username}`;
-  req.body.newPass = `${require.body.newPass}`;
-
-  if (!req.body.username || !req.body.newPass) {
-    return response.status(400).json({ error: 'All fields are required' });
+  
+  // Gets the fields necessary to create new password
+  req.body.oldPass = `${req.body.oldPass}`;
+  req.body.newPass = `${req.body.newPass}`;
+  req.body.newPass2 = `${req.body.newPass2}`;
+  
+  if (req.body.newPass !== req.body.newPass2) {
+    return response.status(400).json({ error: 'New passwords do not match!' });
+  }
+  
+  if (req.body.oldPass === req.body.newPass) {
+    return response.status(400).json({ error: 'Your current password cannot be your current one!' });
   }
 
-  const name = `${req.body.username}`;
-  const pass = `${req.body.newPass}`;
-
-  return Account.AccountModel.newPass(name, pass, (err, username) => {
+  const username = req.session.account.username;
+  
+  return Account.AccountModel.authenticate(username, req.body.oldPass, (err, username) => {
     if (err || !username) {
-      return response.status(401).json({ error: 'Username or invalid password' });
+      return response.status(401).json({ error: 'Current Password is incorrect' });
     }
-    return res.json({ redirect: '/account' });
+    
+    // Create a new account that is set to the old account
+    const newAccount = username;
+    
+    return Account.AccountModel.generateHash(req.body.newPass, (salt, hash) => {
+      newAccount.password = hash;
+      newAccount.salt = salt;
+      
+      const savePromise = newAccount.save();
+      
+      savePromise.catch((err) => {
+        res.json(err);
+      });
+      
+      savePromise.then(() => res.json({ redirect: '/logout' }));
+    });
   });
 };
 
@@ -135,4 +156,4 @@ module.exports.login = login;
 module.exports.logout = logout;
 module.exports.signup = signup;
 module.exports.getToken = getToken;
-module.exports.updatepass = updatepass;
+module.exports.changePassword = changePassword;

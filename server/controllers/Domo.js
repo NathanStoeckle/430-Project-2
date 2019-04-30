@@ -54,6 +54,7 @@ const removerPage = (req, res) => {
   });
 };
 
+// New Pages:
 const accountPage = (req, res) => {
   Domo.DomoModel.findByOwner(req.session.account._id, (err, docs) => {
     if (err) {
@@ -62,6 +63,18 @@ const accountPage = (req, res) => {
     }
 
     return res.render('account', { csrfToken: req.csrfToken(), domos: docs });
+  });
+};
+
+//New Pages for Project 3
+const searchPage = (req, res) => {
+  Domo.DomoModel.findByOwner(req.session.account._id, (err, docs) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ error: 'An error occurred' });
+    }
+
+    return res.render('search', { csrfToken: req.csrfToken(), domos: docs });
   });
 };
 
@@ -93,9 +106,36 @@ const removeDomo = (request, response) => {
   });
 };
 
+const searchKeyword = (request, response) => {
+  const req = request;
+  const res = response;
+  
+  const query = {};
+  
+  if (req.body.name) {
+    query.name = req.body.name;
+  }
+  
+  db.users.find(query, function (err, docs) {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ error: 'An error occurred' });
+    }
+    
+    return res.json({ domos: docs });
+  });
+};
+
+const ad = (req, res) => {
+  console.log('Congrats! Pretend that you have no ads! :D');
+};
+
 module.exports.makerPage = makerPage;
 module.exports.make = makeDomo;
 module.exports.removerPage = removerPage;
 module.exports.remove = removeDomo;
 module.exports.getDomos = getDomos;
 module.exports.accountPage = accountPage;
+module.exports.searchPage = searchPage;
+module.exports.searchKeyword = searchKeyword;
+module.exports.ad = ad;

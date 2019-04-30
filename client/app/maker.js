@@ -23,13 +23,11 @@ const DomoForm = (props) => {
               method="POST"
               className="domoForm"
             >
-            <label htmlFor="name" id="title">Title: </label>
-            <input id="domoName" type="text" name="name" placeholder="Title of your post" />
-            <label htmlFor="age" id="idea">Idea: </label>
-            <input id="domoAge" type="text" name="age" placeholder="Write your thoughts here" />
-            <label htmlFor="level" id="key">Key words: </label>
-            <input id="domoLevel" type="text" name="level" placeholder="What are the Key words here?" />
-            <input className="makeDomoSubmit" type="submit" value="Create Note" />
+            <h3 id="change">Follow the steps below to create your idea: </h3>
+            <input id="domoName" type="text" name="name" placeholder="Title of your post" /><br/><br/>
+            <input id="domoAge" type="text" name="age" placeholder="Write your thoughts here" /><br/><br/>
+            <input id="domoLevel" type="text" name="level" placeholder="What are the Key words here?" /><br/><br/>
+            <input className="noteSubmit" type="submit" value="Create Note" />
             <input name="_csrf" type="hidden" value={props.csrf} />
         </form>
     );
@@ -39,7 +37,7 @@ const DomoList = function(props) {
     if (props.domos.length === 0) {
         return (
             <div className="domoList">
-                <h3 className="emptyDomo">No Domos yet</h3>
+                <h3 className="emptyDomo">Notes haven't been created yet</h3>
             </div>
         );
     }
@@ -50,7 +48,15 @@ const DomoList = function(props) {
             <div key={domo._id} className="domo">
                 <h1 className="domoName">Title: {domo.name} </h1>
                 <h2 className="domoAge">Idea: {domo.age} </h2>
-                <div>
+                <div classname="heightFix">
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
                   <h3 className="domoLevel">Key Words: {domo.level} </h3>
                 </div>
             </div>

@@ -23,7 +23,7 @@ const DomoList = function(props) {
     if (props.domos.length === 0) {
         return (
             <div className="domoList">
-                <h3 className="emptyDomo">No Notes present</h3>
+                <h3 className="emptyDomo">No Notes are found!</h3>
             </div>
         );
     }
@@ -34,6 +34,14 @@ const DomoList = function(props) {
             <div key={domo._id} className="domo">
                 <h1 className="domoName">Title: {domo.name} </h1>
                 <h2 className="domoAge">Idea: {domo.age} </h2>
+            <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
                 <h3 className="domoLevel">Key Words: {domo.level} </h3>
                 <form name="domoForm"
                       onSubmit={removeDomo}
@@ -41,6 +49,11 @@ const DomoList = function(props) {
                       method="POST"
                       className="removeDomoForm"
                     >
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
                     <input name="_id" type="hidden" value={domo._id} className="idField"/>
                     <input name="_csrf" type="hidden" value={csrf} className="csrfField"/>
                     <input className="makeDomoSubmit" type="submit" value="Remove" />

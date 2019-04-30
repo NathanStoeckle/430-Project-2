@@ -51,33 +51,14 @@ var LoginWindow = function LoginWindow(props) {
       method: "POST",
       className: "mainForm" },
     React.createElement(
-      "label",
-      { htmlFor: "username" },
-      " Username: "
+      "h3",
+      { id: "intro" },
+      "Login to your account: "
     ),
-    " ",
-    React.createElement("input", { id: "user",
-      type: "text",
-      name: "username",
-      placeholder: "username" }),
-    React.createElement(
-      "label",
-      { htmlFor: "pass" },
-      " Password: "
-    ),
-    " ",
-    React.createElement("input", { id: "pass",
-      type: "password",
-      name: "pass",
-      placeholder: "password" }),
-    React.createElement("input", { type: "hidden",
-      name: "_csrf",
-      value: props.csrf
-    }),
-    " ",
-    React.createElement("input", { className: "formSubmit",
-      type: "submit",
-      value: "Sign in" })
+    React.createElement("input", { id: "user", style: { fontSize: 14 + "pt" }, type: "text", name: "username", placeholder: "username" }),
+    React.createElement("input", { id: "pass", style: { fontSize: 14 + "pt" }, type: "password", name: "pass", placeholder: "Password" }),
+    React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
+    React.createElement("input", { className: "formSubmit", type: "submit", value: "Sign in" })
   );
 };
 
@@ -91,43 +72,15 @@ var SignupWindow = function SignupWindow(props) {
       method: "POST",
       className: "mainForm" },
     React.createElement(
-      "label",
-      { htmlFor: "username" },
-      " Username: "
+      "h3",
+      { id: "intro" },
+      "Create a new account: "
     ),
-    " ",
-    React.createElement("input", { id: "user",
-      type: "text",
-      name: "username",
-      placeholder: "username" }),
-    React.createElement(
-      "label",
-      { htmlFor: "pass" },
-      " Password: "
-    ),
-    " ",
-    React.createElement("input", { id: "pass",
-      type: "password",
-      name: "pass",
-      placeholder: "password" }),
-    React.createElement(
-      "label",
-      { htmlFor: "pass2" },
-      " Password: "
-    ),
-    " ",
-    React.createElement("input", { id: "pass2",
-      type: "password",
-      name: "pass2",
-      placeholder: "retype password" }),
-    React.createElement("input", { type: "hidden",
-      name: "_csrf",
-      value: props.csrf
-    }),
-    " ",
-    React.createElement("input", { className: "formSubmit",
-      type: "submit",
-      value: "Sign Up" })
+    React.createElement("input", { id: "user", style: { fontSize: 14 + "pt" }, type: "text", name: "username", placeholder: "Username" }),
+    React.createElement("input", { id: "pass", style: { fontSize: 14 + "pt" }, type: "password", name: "pass", placeholder: "Password" }),
+    React.createElement("input", { id: "pass2", style: { fontSize: 14 + "pt" }, type: "password", name: "pass2", placeholder: "Retype Password" }),
+    React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
+    React.createElement("input", { className: "formSubmit", type: "submit", value: "Sign Up" })
   );
 };
 
@@ -148,6 +101,13 @@ var setup = function setup(csrf) {
   signupButton.addEventListener("click", function (e) {
     e.preventDefault();
     createSignupWindow(csrf);
+
+    //Switch between what is being show to the user
+    loginButton.classList.remove("selected");
+    loginButton.classList.add("unselected");
+    signupButton.classList.remove("unselected");
+    signupButton.classList.add("selected");
+
     return false;
   });
 

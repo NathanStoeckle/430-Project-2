@@ -27,24 +27,20 @@ var DomoForm = function DomoForm(props) {
             className: "domoForm"
         },
         React.createElement(
-            "label",
-            { htmlFor: "name", id: "title" },
-            "Title: "
+            "h3",
+            { id: "change" },
+            "Follow the steps below to create your idea: "
         ),
         React.createElement("input", { id: "domoName", type: "text", name: "name", placeholder: "Title of your post" }),
-        React.createElement(
-            "label",
-            { htmlFor: "age", id: "idea" },
-            "Idea: "
-        ),
+        React.createElement("br", null),
+        React.createElement("br", null),
         React.createElement("input", { id: "domoAge", type: "text", name: "age", placeholder: "Write your thoughts here" }),
-        React.createElement(
-            "label",
-            { htmlFor: "level", id: "key" },
-            "Key words: "
-        ),
+        React.createElement("br", null),
+        React.createElement("br", null),
         React.createElement("input", { id: "domoLevel", type: "text", name: "level", placeholder: "What are the Key words here?" }),
-        React.createElement("input", { className: "makeDomoSubmit", type: "submit", value: "Create Note" }),
+        React.createElement("br", null),
+        React.createElement("br", null),
+        React.createElement("input", { className: "noteSubmit", type: "submit", value: "Create Note" }),
         React.createElement("input", { name: "_csrf", type: "hidden", value: props.csrf })
     );
 };
@@ -57,7 +53,7 @@ var DomoList = function DomoList(props) {
             React.createElement(
                 "h3",
                 { className: "emptyDomo" },
-                "No Domos yet"
+                "Notes haven't been created yet"
             )
         );
     }
@@ -83,7 +79,15 @@ var DomoList = function DomoList(props) {
             ),
             React.createElement(
                 "div",
-                null,
+                { classname: "heightFix" },
+                React.createElement("br", null),
+                React.createElement("br", null),
+                React.createElement("br", null),
+                React.createElement("br", null),
+                React.createElement("br", null),
+                React.createElement("br", null),
+                React.createElement("br", null),
+                React.createElement("br", null),
                 React.createElement(
                     "h3",
                     { className: "domoLevel" },
